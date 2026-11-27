@@ -157,7 +157,7 @@ a{color:var(--rose)}
 </head>
 <body>
 <script>
-window.addEventListener('load',function(){setTimeout(function(){if(!window.__appOk){var m=document.getElementById('jsErr');if(m)m.style.display='block'}},300)});
+window.__errs=[];window.addEventListener('error',function(e){try{window.__errs.push((e.message||'?')+' · satır '+(e.lineno||'?')+':'+(e.colno||'?'))}catch(x){}});window.addEventListener('load',function(){setTimeout(function(){if(!window.__appOk){var m=document.getElementById('jsErr');if(m){m.style.display='block';var d=document.createElement('small');d.style.display='block';d.style.marginTop='8px';d.style.fontSize='12px';d.style.wordBreak='break-word';d.textContent='Teknik bilgi: '+(window.__errs.length?window.__errs.slice(0,3).join(' | '):'hata mesajı yok')+' · '+navigator.userAgent;m.appendChild(d)}}},300)});
 </script>
 <nav class="nav" aria-label="Menü">
   <a href="#bugun" data-v="bugun"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>Bugün</a>
