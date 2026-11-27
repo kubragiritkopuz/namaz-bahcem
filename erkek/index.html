@@ -299,6 +299,7 @@ a{color:var(--rose)}
     <p>Linke dokununca sayfa açılır. Sayfa WhatsApp'ın içinde açılırsa:</p>
     <ul><li><b>iPhone:</b> Sağ alttaki <b>pusula (Safari)</b> simgesine dokun. Simge yoksa linke basılı tut, <b>"Kopyala"</b>yı seç, Safari'yi açıp adres çubuğuna <b>"Yapıştır ve Git"</b> de.</li>
     <li><b>Android:</b> Sağ üstteki <b>⋮</b> menüsünden <b>"Chrome'da aç"</b>ı seç.</li></ul>
+    <p class="small"><a href="../index.html#sec" data-ext>Kadın / erkek versiyonunu değiştir</a></p>
     <p class="small muted">Uygulama "…html" adlı bir <b>dosya</b> olarak geldiyse kaydedilemez. Gönderenden linki iste.</p>
   </div>
 
@@ -325,6 +326,11 @@ a{color:var(--rose)}
   </div>
 
   <div class="card">
+    <h3>Kendi simgesiyle eklemek için</h3>
+    <p>Ana ekrana eklemeyi <b>bu uygulamanın içindeyken</b> yaparsan simge "Namaz Fidanım" adıyla ve kendi resmiyle eklenir, açılınca doğrudan buraya gelir. Karşılama (seçim) ekranındayken eklersen ortak "Namaz Takibi" simgesi eklenir. Bu da sorun değil, seçimin hatırlandığı için yine doğrudan buraya açılır.</p>
+  </div>
+
+  <div class="card">
     <h3>İşaretlemelerin nerede saklanıyor?</h3>
     <p>Bütün işaretlemelerin <b>sadece senin telefonunda</b> saklanır. Kimse görmez, internete gönderilmez.</p>
     <p>Tarayıcı verilerini silersen ya da telefon değiştirirsen işaretlemeler kaybolabilir. Arada bir <b>Fidanlığım</b> sekmesinin altındaki <b>"Yedek kodumu kopyala"</b> düğmesine dokun ve kodu WhatsApp'ta kendine gönder. Gerekirse o kodla her şeyi geri yükleyebilirsin.</p>
@@ -345,6 +351,7 @@ a{color:var(--rose)}
 const gcQ=[];
 function gc(path,title,ev){const o={path:'erkek/'+String(path).replace(/^\//,''),title:'Erkek · '+title,event:!!ev};try{if(window.goatcounter&&window.goatcounter.count){window.goatcounter.count(o)}else gcQ.push(o)}catch(e){}}
 const gcs=document.getElementById('gcjs');if(gcs)gcs.addEventListener('load',()=>{try{while(gcQ.length)window.goatcounter.count(gcQ.shift())}catch(e){}});
+try{localStorage.setItem('namazSecim','erkek')}catch(e){}
 /* ---------- içerik ---------- */
 const DUA=[
 {t:'Sübhâneke',w:'Her namazın ilk rekatında, iftitah tekbirinden sonra',ar:'سُبْحَانَكَ اللّٰهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالٰى جَدُّكَ وَلَا اِلٰهَ غَيْرُكَ',ok:'Sübhânekellâhümme ve bi hamdik ve tebârakesmük ve teâlâ ceddük ve lâ ilâhe ğayrük.',m:"Allah'ım! Seni her türlü eksiklikten uzak tutar, seni hamd ile anarım. Senin adın mübarektir, şanın yücedir. Senden başka ilah yoktur."},
@@ -542,6 +549,7 @@ function renderBahce(){
    <div class="row"><button class="btn" id="saveSet">Kaydet</button></div>
    <div class="row"><button class="btn ghost" id="bak">Yedek kodumu kopyala</button><button class="btn ghost" id="res">Yedekten geri yükle</button></div>
    <div class="row"><button class="btn ghost" id="new">Yeni kamp başlat</button></div>
+   <p class="small" style="margin-top:14px"><a href="../index.html#sec" data-ext>Kadın / erkek versiyonunu değiştir</a></p>
   </div>`;
   document.getElementById('saveSet').onclick=()=>{const n=document.getElementById('en').value.trim();const s=document.getElementById('es').value;if(n)S.name=n;if(s)S.start=s;save();renderBahce();toast('Kaydedildi.')};
   document.getElementById('bak').onclick=backup;
