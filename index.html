@@ -129,6 +129,7 @@ a{color:var(--rose)}
 .warn{background:#fff3cd;color:#5c4400;border-radius:14px;padding:10px 14px;font-size:14px;display:none}
 @media(max-width:400px){.hero{grid-template-columns:minmax(0,1fr) 110px}.hero .big{width:110px;height:130px}.hero .day{font-size:44px}.garden{grid-template-columns:repeat(5,minmax(0,1fr))}}
 </style>
+<script data-goatcounter="https://namazbahcem.goatcounter.com/count" data-goatcounter-settings='{"no_onload":true}' async src="https://gc.zgo.at/count.js" id="gcjs"></script>
 </head>
 <body>
 <nav class="nav" aria-label="Menü">
@@ -245,6 +246,7 @@ a{color:var(--rose)}
       <li><b>Diyanet İşleri Başkanlığı, Kur'an-ı Kerim Meali</b>: surelerin Arapça metni ve anlamı için.<br><a href="https://kuran.diyanet.gov.tr" target="_blank" rel="noopener">kuran.diyanet.gov.tr</a></li>
       <li><b>Din İşleri Yüksek Kurulu</b>: sık sorulan dini sorular.<br><a href="https://kurul.diyanet.gov.tr" target="_blank" rel="noopener">kurul.diyanet.gov.tr</a></li>
     </ul>
+    <p class="small muted"><b>Gizlilik:</b> İşaretlemelerin yalnızca senin telefonunda saklanır. Sitede çerez kullanmayan, kişisel veri toplamayan anonim bir ziyaretçi sayacı (GoatCounter) kullanılır. Bu sayaç sadece toplam sayıları görür, kimin ne işaretlediğini görmez.</p>
     <p class="small muted">Mealler, Diyanet meali esas alınarak sade bir dille yazılmıştır. Ayrıntılı meal için kuran.diyanet.gov.tr'ye bakabilirsin. Okunuşlar öğrenmeye yardımcı olmak içindir. Doğru telaffuz için bir hocadan ya da Diyanet'in sesli kaynaklarından dinleyerek öğrenmek en sağlıklısıdır.</p>
   </div>
 </section>
@@ -314,6 +316,10 @@ a{color:var(--rose)}
 
 <script>
 {
+/* ---------- anonim sayaç ---------- */
+const gcQ=[];
+function gc(path,title,ev){const o={path,title,event:!!ev};try{if(window.goatcounter&&window.goatcounter.count){window.goatcounter.count(o)}else gcQ.push(o)}catch(e){}}
+const gcs=document.getElementById('gcjs');if(gcs)gcs.addEventListener('load',()=>{try{while(gcQ.length)window.goatcounter.count(gcQ.shift())}catch(e){}});
 /* ---------- içerik ---------- */
 const DUA=[
 {t:'Sübhâneke',w:'Her namazın ilk rekatında, iftitah tekbirinden sonra',ar:'سُبْحَانَكَ اللّٰهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالٰى جَدُّكَ وَلَا اِلٰهَ غَيْرُكَ',ok:'Sübhânekellâhümme ve bi hamdik ve tebârakesmük ve teâlâ ceddük ve lâ ilâhe ğayrük.',m:"Allah'ım! Seni her türlü eksiklikten uzak tutar, seni hamd ile anarım. Senin adın mübarektir, şanın yücedir. Senden başka ilah yoktur."},
@@ -423,7 +429,7 @@ function setupHTML(){return `<div class="hero"><div><h1>40 Gün<br>Namaz Bahçem
 <p class="small muted">Her vakit için farz, sünnet ve vitri ayrı ayrı işaretleyebilirsin. Özel günler kampı bozmaz.</p>
 <div class="row"><button class="btn" type="submit">Kampa başla</button></div></form>
 <p class="small muted" style="text-align:center">iPhone kullanıyorsan önce uygulamayı ana ekrana ekle, sonra buradan başla.<br><a href="#kurulum">Telefonuma nasıl kaydederim?</a></p>`}
-function bindSetup(){const f=document.getElementById('setup');if(!f)return;f.addEventListener('submit',e=>{e.preventDefault();const n=document.getElementById('nm').value.trim();const d=document.getElementById('sd').value||today();if(!n)return;S={name:n,start:d,days:{}};save();view=today();render();toast(nm("Hoş geldin {ad}! Bahçen seni bekliyor."),1,0)})}
+function bindSetup(){const f=document.getElementById('setup');if(!f)return;f.addEventListener('submit',e=>{e.preventDefault();const n=document.getElementById('nm').value.trim();const d=document.getElementById('sd').value||today();if(!n)return;S={name:n,start:d,days:{}};save();view=today();render();gc('kamp-basladi','Kampa başladı',1);toast(nm("Hoş geldin {ad}! Bahçen seni bekliyor."),1,0)})}
 
 /* ---------- BUGÜN ---------- */
 let view=today();
@@ -471,6 +477,8 @@ function toggle(key){
   const bf=document.getElementById('bigF');if(bf){bf.classList.remove('pop');void bf.offsetWidth;bf.classList.add('pop')}
   if(!on)return;
   let msg;const part=key.split('_')[1];
+  if(fc(view)===5&&!d.c){d.c=1;save();gc('gun-tamamlandi','Bir gün tamamlandı (5 vakit)',1);const nd2=camp().filter(x=>!x.oz&&fc(x.k)===5).length;if(nd2===40)gc('kamp-bitti','40 gün tamamlandı',1)}
+  if(rk(view)===40&&!d.t){d.t=1;save();gc('tam-gun','40 rekatın hepsi kılındı',1)}
   if(rk(view)===40&&before.r<40)msg=pick(MSG.full);
   else if(fc(view)===5&&before.f<5){const nd=camp().filter(x=>!x.oz&&fc(x.k)===5).length;msg=MILE[nd]||pick(MSG.day)}
   else msg=pick(part==='f'?MSG.f:part==='v'?MSG.v:MSG.s);
@@ -519,10 +527,10 @@ function renderBahce(){
   document.getElementById('res').onclick=()=>{modal(`<h3>Yedekten geri yükle</h3><p class="small muted">Daha önce kopyaladığın yedek kodunu buraya yapıştır.</p><textarea id="rt" rows="5"></textarea><div class="row"><button class="btn" id="rgo">Geri yükle</button><button class="btn ghost" data-close>Vazgeç</button></div>`);
     document.getElementById('rgo').onclick=()=>{try{const o=JSON.parse(decodeURIComponent(escape(atob(document.getElementById('rt').value.trim()))));if(!o||!o.start||!o.days)throw 0;S={name:String(o.name||''),start:String(o.start),days:o.days};save();closeModal();view=today();render();toast(nm('Bahçen geri geldi {ad}!'),3,0)}catch(e){toast('Bu kod okunamadı. Kodun tamamını kopyaladığından emin ol.')}}};
   document.getElementById('new').onclick=()=>{modal(`<h3>Yeni kamp başlatılsın mı?</h3><p>Şu anki bahçendeki bütün işaretlemeler silinir. İstersen önce yedek kodunu kopyala.</p><div class="row"><button class="btn" id="ngo">Evet, yeni kamp</button><button class="btn ghost" data-close>Vazgeç</button></div>`);
-    document.getElementById('ngo').onclick=()=>{S={name:S.name,start:today(),days:{}};save();closeModal();view=today();render();toast(nm('Yeni bahçen hazır {ad}. Bismillah!'),1,0)}};
+    document.getElementById('ngo').onclick=()=>{S={name:S.name,start:today(),days:{}};save();closeModal();gc('yeni-kamp','Yeni kamp başlatıldı',1);view=today();render();toast(nm('Yeni bahçen hazır {ad}. Bismillah!'),1,0)}};
 }
 function backup(){
-  const code=btoa(unescape(encodeURIComponent(JSON.stringify(S))));
+  gc('yedek-alindi','Yedek kodu kopyalandı',1);const code=btoa(unescape(encodeURIComponent(JSON.stringify(S))));
   const done=()=>toast('Yedek kodun kopyalandı. WhatsApp\'ta kendine gönderebilirsin.');
   const show=()=>{modal(`<h3>Yedek kodun</h3><p class="small muted">Kodun tamamını seçip kopyala ve kendine gönder.</p><textarea id="bt" rows="6" readonly></textarea><div class="row"><button class="btn ghost" data-close>Kapat</button></div>`);const ta=document.getElementById('bt');ta.value=code;ta.focus();ta.select()};
   try{navigator.clipboard.writeText(code).then(done,show)}catch(e){show()}
@@ -546,11 +554,13 @@ document.getElementById('aZ').onclick=()=>setAr(arSize+3);
 /* ---------- yönlendirme ---------- */
 const VIEWS=['bugun','bahce','rehber','dualar','kurulum'];
 const ANCH={kaynaklar:'rehber','r-rekat':'rehber','r-sart':'rehber','r-kilinis':'rehber','r-fark':'rehber','r-vitir':'rehber','r-ozel':'rehber'};
+let lastV='';
 function route(force){
   const h=force||(location.hash||'').slice(1);
   let v=VIEWS.includes(h)?h:(ANCH[h]||'bugun');
   document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));
   document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('on',a.dataset.v===v));
+  if(v!==lastV){lastV=v;gc('/'+v,{bugun:'Bugün',bahce:'Bahçem',rehber:'Rehber',dualar:'Dualar',kurulum:'Telefona kaydet'}[v]||v)}
   if(v==='bugun')renderBugun();if(v==='bahce')renderBahce();if(v==='dualar')renderDua();
   if(ANCH[h]){const t=document.getElementById(h);if(t)setTimeout(()=>t.scrollIntoView({behavior:'smooth'}),30)}else window.scrollTo(0,0);
 }
