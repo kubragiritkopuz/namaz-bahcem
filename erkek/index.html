@@ -358,7 +358,7 @@ window.__errs=[];window.addEventListener('error',function(e){try{window.__errs.p
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="card" id="modalBody"></div></div>
 
 <script>
-{
+(function(){
 /* ---------- anonim sayaç ---------- */
 const gcQ=[];
 function gc(path,title,ev){const o={path:'erkek/'+String(path).replace(/^\//,''),title:'Erkek · '+title,event:!!ev};try{if(window.goatcounter&&window.goatcounter.count){window.goatcounter.count(o)}else gcQ.push(o)}catch(e){}}
@@ -641,7 +641,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&(location
 route();
 window.__appOk=1;
 if('serviceWorker' in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(()=>{})}
-}
+})();
 </script>
 </body>
 </html>
