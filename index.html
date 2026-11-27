@@ -7,6 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Namaz Bahçem">
 <meta name="theme-color" content="#f8dfe2">
+<meta name="color-scheme" content="light only">
 <title>40 Gün Namaz Bahçem</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -23,11 +24,11 @@ PICTURE: today's flower growing from seed to full bloom; a 40-flower garden bed
 COLOUR and TYPE: blush ground, deep rose, sage leaf, a touch of gold; Cormorant titles, Nunito body, Amiri Arabic
 LAYOUT: one calm mobile column, bottom tab bar, cards per prayer time
 */
-:root{color-scheme:light;
---bg:light-dark(#fcf1ef,#1c1315);--card:light-dark(#fffaf9,#291c1f);--ink:light-dark(#3b272b,#f6e8e9);
---soft:light-dark(#7a5f64,#c8afb3);--rose:light-dark(#b8506b,#ec8ea6);--rose2:light-dark(#e8a3b3,#a9566b);
---blush:light-dark(#f7dde1,#3d272d);--sage:light-dark(#5f805d,#9fc09a);--leaf:light-dark(#e3ecdd,#25301f);
---gold:#e5b45a;--line:light-dark(#efd3d8,#47313a);--shadow:light-dark(0 6px 20px rgba(184,80,107,.10),0 6px 20px rgba(0,0,0,.35))}
+:root,:root[data-theme]{color-scheme:light only;
+--bg:#fcf1ef;--card:#fffaf9;--ink:#3b272b;
+--soft:#7a5f64;--rose:#b8506b;--rose2:#e8a3b3;
+--blush:#f7dde1;--sage:#5f805d;--leaf:#e3ecdd;
+--gold:#e5b45a;--line:#efd3d8;--shadow:0 6px 20px rgba(184,80,107,.10)}
 
 *{box-sizing:border-box;min-width:0}
 html{scroll-padding-top:80px;-webkit-text-size-adjust:100%}
@@ -90,8 +91,9 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0}
 .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--rose2),var(--rose));border-radius:999px}
 .brow{display:flex;justify-content:space-between;font-weight:700;font-size:15px}
 /* dua */
-.seg{display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:66px;background:var(--bg);padding:10px 0;z-index:2}
-.seg button{min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-weight:700;cursor:pointer}
+.seg{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;position:sticky;top:66px;background:var(--bg);padding:10px 0;z-index:2}
+.seg button{min-height:44px;padding:0 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-weight:700;cursor:pointer}
+.seg #az,.seg #aZ{width:44px;padding:0;margin-left:auto}.seg #aZ{margin-left:0}
 .seg button[aria-pressed=true]{background:var(--rose);color:#fff;border-color:var(--rose)}
 .ar{font-family:Amiri,"Traditional Arabic",serif;direction:rtl;text-align:right;font-size:var(--arsize,27px);line-height:2.1;margin:10px 0;color:var(--ink)}
 .ok{background:var(--blush);border-radius:14px;padding:10px 14px;margin:8px 0}
@@ -120,12 +122,26 @@ a{color:var(--rose)}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 #toast svg{width:44px;height:50px;flex:none}
 #toast p{margin:0;font-weight:700}
+#toast.on{pointer-events:auto}
+.tbody{display:grid;gap:8px;justify-items:start}
+.tact{min-height:40px;padding:0 16px;border-radius:999px;border:0;background:var(--rose);color:#fff;font-weight:800;cursor:pointer}
+.tlink{display:inline-flex;align-items:center;gap:6px;margin-top:10px;min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--sage);background:var(--leaf);color:var(--sage);font-weight:800;cursor:pointer}
 .modal{position:fixed;inset:0;background:rgba(40,20,25,.45);display:none;place-items:center;z-index:30;padding:20px}
 .modal.on{display:grid}.modal .card{max-width:420px;width:100%}
 .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
 .pop{animation:pop .6s ease}
 @keyframes pop{0%{transform:scale(.85)}60%{transform:scale(1.08)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.zk{display:grid;justify-items:center;gap:10px;text-align:center}
+.zbtn{width:min(70vw,240px);aspect-ratio:1;border-radius:50%;border:0;cursor:pointer;background:radial-gradient(circle at 35% 30%,#f6c9d3,var(--rose) 70%);color:#fff;box-shadow:0 10px 30px rgba(184,80,107,.35),inset 0 -6px 14px rgba(0,0,0,.12);display:grid;place-items:center;align-content:center;gap:2px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.zbtn:active{transform:scale(.97)}
+.zbtn .zar{font-family:Amiri,serif;font-size:30px;line-height:1.3}
+.zbtn .zn{font-family:"Cormorant Garamond",serif;font-size:56px;font-weight:700;line-height:1}
+.zbtn .zt{font-size:15px;font-weight:700;opacity:.95}
+.zsteps{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.zsteps span{font-size:13px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--blush);color:var(--soft)}
+.zsteps span.on{background:var(--rose);color:#fff}.zsteps span.ok{background:var(--leaf);color:var(--sage)}
+.num{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--rose);color:#fff;font-weight:800;font-size:14px;margin-right:8px;vertical-align:middle}
 .warn{background:#fff3cd;color:#5c4400;border-radius:14px;padding:10px 14px;font-size:14px;display:none}
 @media(max-width:400px){.hero{grid-template-columns:minmax(0,1fr) 110px}.hero .big{width:110px;height:130px}.hero .day{font-size:44px}.garden{grid-template-columns:repeat(5,minmax(0,1fr))}}
 </style>
@@ -205,6 +221,7 @@ a{color:var(--rose)}
       <li><b>İkinci rekat:</b> Tekbirle ayağa kalkılır. Besmele, Fâtiha ve bir sure okunur. Rükû ve iki secde aynı şekilde yapılır.</li>
       <li><b>Son oturuş:</b> Kadınlar ayaklarını sağ tarafa çıkararak oturur. <b>Ettehiyyâtü</b>, <b>Allâhümme Salli</b>, <b>Allâhümme Bârik</b> ve <b>Rabbenâ</b> duaları okunur.</li>
       <li><b>Selam:</b> Baş önce sağa çevrilerek "Esselâmü aleyküm ve rahmetullâh" denir, sonra sola çevrilerek aynısı söylenir.</li>
+      <li><b>Tesbihat:</b> Namazdan sonra istiğfar, tesbih ve dua ile vakit tamamlanır. Sırası ve metinleri <a href="#dualar">Dualar → Tesbihat</a> bölümündedir.</li>
     </ol>
   </div>
 
@@ -258,6 +275,7 @@ a{color:var(--rose)}
   <div class="seg" role="group" aria-label="Filtre">
     <button type="button" data-f="dua" aria-pressed="true">Dualar</button>
     <button type="button" data-f="sure" aria-pressed="false">Sureler</button>
+    <button type="button" data-f="tesb" aria-pressed="false">Tesbihat</button>
     <button type="button" id="az" aria-label="Arapça yazıyı küçült">A−</button>
     <button type="button" id="aZ" aria-label="Arapça yazıyı büyüt">A+</button>
   </div>
@@ -416,7 +434,10 @@ function flower(st,i,big){
 const STAGE_TXT={0:'Tohum',1:'Filiz',2:'Tomurcuk',3:'Çiçek açtı',4:'Tam gül','oz':'Özel gün'};
 
 /* ---------- toast & modal ---------- */
-let tt;function toast(msg,st,i){const t=document.getElementById('toast');t.innerHTML=(st!==undefined?flower(st,i):'')+'<p></p>';t.querySelector('p').textContent=msg;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),4200)}
+let tt;function toast(msg,st,i,act){const t=document.getElementById('toast');t.innerHTML=(st!==undefined?flower(st,i):'')+'<div class="tbody"><p></p></div>';t.querySelector('p').textContent=msg;
+ if(act){const b=document.createElement('button');b.type='button';b.className='tact';b.textContent=act[0];b.onclick=()=>{t.classList.remove('on');act[1]()};t.querySelector('.tbody').appendChild(b)}
+ t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),act?7000:4200)}
+function goTesb(){filt='tesb';zs=0;zc=0;go('dualar')}
 function modal(html){const m=document.getElementById('modal');document.getElementById('modalBody').innerHTML=html;m.classList.add('on')}
 function closeModal(){document.getElementById('modal').classList.remove('on')}
 document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal'||e.target.dataset.close!==undefined)closeModal()});
@@ -457,7 +478,7 @@ function renderBugun(){
   <div class="${fut||d.ozel?'disabled-day':''}">
   ${VAKIT.map(v=>`<div class="card vakit"><div class="vhead"><h3>${v.ad}</h3><span class="small muted">${v.p.reduce((a,p)=>a+p[2],0)} rekat</span></div><div class="chips">
   ${v.p.map(p=>`<button type="button" class="chip ${p[0]==='f'?'farz':''}" data-k="${v.id}_${p[0]}" aria-pressed="${!!d[v.id+'_'+p[0]]}"><span class="dot"></span>${p[1]} <small>${p[2]}</small></button>`).join('')}
-  </div></div>`).join('')}</div>
+  </div>${d[v.id+'_f']?`<button type="button" class="tlink" data-tesb>Tesbihat çek →</button>`:''}</div>`).join('')}</div>
   <div class="card ozel"><div><b>Özel gün</b><br><span class="small muted">Bu gün namaz kılınmaz. Seri bozulmaz, kamp bir gün uzar.</span></div>
   <button type="button" class="switch" id="oz" role="switch" aria-checked="${!!d.ozel}" aria-label="Özel gün" ${fut?'disabled':''}></button></div>
   <div class="card verse">“${esc(ay[0])}”<small>${esc(ay[1])} · anlamı</small></div>
@@ -465,6 +486,7 @@ function renderBugun(){
   document.getElementById('prev').onclick=()=>{view=addD(view,-1);renderBugun()};
   document.getElementById('next').onclick=()=>{view=addD(view,1);renderBugun()};
   el.querySelectorAll('.chip').forEach(b=>b.onclick=()=>toggle(b.dataset.k));
+  el.querySelectorAll('[data-tesb]').forEach(b=>b.onclick=goTesb);
   document.getElementById('oz').onclick=toggleOz;
 }
 function toggle(key){
@@ -482,7 +504,7 @@ function toggle(key){
   if(rk(view)===40&&before.r<40)msg=pick(MSG.full);
   else if(fc(view)===5&&before.f<5){const nd=camp().filter(x=>!x.oz&&fc(x.k)===5).length;msg=MILE[nd]||pick(MSG.day)}
   else msg=pick(part==='f'?MSG.f:part==='v'?MSG.v:MSG.s);
-  toast(nm(msg),st,idx);
+  toast(nm(msg),st,idx,part==='f'||part==='v'?['Tesbihat çek',goTesb]:null);
 }
 function toggleOz(){
   if(view>today())return;
@@ -537,10 +559,38 @@ function backup(){
 }
 
 /* ---------- DUALAR ---------- */
+const TESB=[
+{t:'İstiğfar',c:'3 kez',ar:'اَسْتَغْفِرُ اللّٰهَ',ok:'Estağfirullâh.',m:"Allah'tan bağışlanma dilerim."},
+{t:'Allâhümme ente’s-selâm',c:'1 kez',ar:'اَللّٰهُمَّ اَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْاِكْرَامِ',ok:'Allâhümme entes-selâmü ve minkes-selâm. Tebârakte yâ zel-celâli vel-ikrâm.',m:"Allah'ım! Sen her türlü eksiklikten uzaksın, esenlik ancak sendendir. Ey celal ve ikram sahibi, sen ne yücesin!"},
+{t:'Âyete’l-Kürsî',c:'1 kez · Bakara 255',ar:'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ',ok:"Allâhü lâ ilâhe illâ hüvel-hayyül-kayyûm. Lâ te'huzühû sinetün ve lâ nevm. Lehû mâ fis-semâvâti ve mâ fil-ard. Men zellezî yeşfeu indehû illâ bi iznih. Ya'lemü mâ beyne eydîhim ve mâ halfehüm. Ve lâ yuhîtûne bi şey'in min ilmihî illâ bi mâ şâ'. Vesia kürsiyyühüs-semâvâti vel-ard. Ve lâ yeûdühû hıfzuhümâ ve hüvel-aliyyül-azîm.",m:"Allah, kendisinden başka ilah olmayandır. Diridir, her şeyi ayakta tutandır. O'nu ne uyuklama tutar ne de uyku. Göklerde ve yerde ne varsa O'nundur. İzni olmadan O'nun katında kim şefaat edebilir? O, insanların önlerindekini ve arkalarındakini bilir. Onlar O'nun ilminden, dilediği kadarı dışında hiçbir şey kavrayamazlar. O'nun kürsüsü gökleri ve yeri kuşatmıştır. Onları korumak O'na ağır gelmez. O yücedir, büyüktür."},
+{t:'Sübhânallâh',c:'33 kez',ar:'سُبْحَانَ اللّٰهِ',ok:'Sübhânallâh.',m:"Allah her türlü eksiklikten uzaktır."},
+{t:'Elhamdülillâh',c:'33 kez',ar:'اَلْحَمْدُ لِلّٰهِ',ok:'Elhamdülillâh.',m:"Hamd Allah'a mahsustur."},
+{t:'Allâhu ekber',c:'33 kez',ar:'اَللّٰهُ اَكْبَرُ',ok:'Allâhu ekber.',m:"Allah en büyüktür."},
+{t:'Tevhid',c:'1 kez · 100’e tamamlar',ar:'لَا اِلٰهَ اِلَّا اللّٰهُ وَحْدَهُ لَا شَر۪يكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلٰى كُلِّ شَيْءٍ قَد۪يرٌ',ok:"Lâ ilâhe illallâhü vahdehû lâ şerîke leh. Lehül-mülkü ve lehül-hamdü ve hüve alâ külli şey'in kadîr.",m:"Allah'tan başka ilah yoktur. O tektir, ortağı yoktur. Mülk O'nundur, hamd O'na aittir. O her şeye gücü yetendir."},
+{t:'Dua',c:'Dilediğin kadar',ar:'',ok:'',m:"Eller açılarak kalpten geçen dualar Türkçe ya da Arapça yapılır. Dualar sekmesindeki Rabbenâ duaları da okunabilir. Sonunda \"Âmîn\" denir ve eller yüze sürülür."}
+];
+const ZK=[['سُبْحَانَ اللّٰهِ','Sübhânallâh'],['اَلْحَمْدُ لِلّٰهِ','Elhamdülillâh'],['اَللّٰهُ اَكْبَرُ','Allâhu ekber']];
+let zs=0,zc=0;
+function zkHTML(){if(zs>2)return `<div class="zk"><div class="zsteps">${ZK.map(z=>`<span class="ok">${z[1]} 33</span>`).join('')}</div><div class="zbtn" style="cursor:default"><span class="zt">Tamamlandı</span><span class="zn">99</span><span class="zt">Allah kabul etsin</span></div><p>Şimdi tevhid cümlesiyle 100'e tamamla ve dua et.</p><button class="btn ghost" type="button" id="zr">Yeniden başla</button></div>`;
+ return `<div class="zk"><div class="zsteps">${ZK.map((z,i)=>`<span class="${i<zs?'ok':i===zs?'on':''}">${z[1]} 33</span>`).join('')}</div>
+ <button class="zbtn" type="button" id="zb" aria-label="${ZK[zs][1]}, ${zc} / 33. Saymak için dokun"><span class="zar" lang="ar">${ZK[zs][0]}</span><span class="zn">${zc}</span><span class="zt">${ZK[zs][1]} · 33</span></button>
+ <p class="small muted">Her zikirde daireye bir kez dokun. 33'e gelince sıradaki zikre kendiliğinden geçer.</p><button class="btn ghost" type="button" id="zr">Sıfırla</button></div>`}
+function bindZk(){const b=document.getElementById('zb'),r=document.getElementById('zr');
+ if(b)b.onclick=()=>{zc++;try{navigator.vibrate&&navigator.vibrate(zc===33?[40,60,40]:12)}catch(e){}if(zc>=33){zs++;zc=0;if(zs>2)toast(nm(S&&S.name?'Tesbihatını tamamladın {ad}. Allah kabul etsin.':'Tesbihatını tamamladın. Allah kabul etsin.'))}document.getElementById('zkBox').innerHTML=zkHTML();bindZk()};
+ if(r)r.onclick=()=>{zs=0;zc=0;document.getElementById('zkBox').innerHTML=zkHTML();bindZk()}}
+function renderTesb(){
+ document.getElementById('duaList').innerHTML=`<div class="card"><h3>Namazdan sonra tesbihat</h3><p>Selam verdikten sonra yerinden kalkmadan sırasıyla okunur. Sünnet olan bu zikirler namazın bereketini artırır.</p><p class="small muted">Farzdan sonra son sünnet varsa (öğle, akşam, yatsı) tesbihat genellikle sünnetten sonra yapılır.</p></div>
+ <div class="card" id="zkBox">${zkHTML()}</div>`+
+ TESB.map((x,i)=>`<article class="card"><span class="tag">${esc(x.c)}</span><h3><span class="num">${i+1}</span>${esc(x.t)}</h3>${x.ar?`<p class="ar" lang="ar">${x.ar}</p><p class="lbl">Okunuşu</p><p class="ok">${esc(x.ok)}</p><p class="lbl">Anlamı</p>`:''}<p class="meal">${esc(x.m)}</p></article>`).join('')+
+ `<p class="small muted">Kaynak: Diyanet İşleri Başkanlığı, Namaz İlmihali, "Namazdan sonra tesbihat". Tesbih ve tevhid sırası Müslim'deki hadise dayanır.</p>`;
+ bindZk();
+}
 let filt='dua',arSize=27;
 try{arSize=+localStorage.getItem(K+'_ar')||27}catch(e){}
 function renderDua(){
   document.documentElement.style.setProperty('--arsize',arSize+'px');
+  document.querySelectorAll('.seg [data-f]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.f===filt));
+  if(filt==='tesb'){renderTesb();return}
   const list=filt==='dua'?DUA:SURE;
   document.getElementById('duaList').innerHTML=list.map(x=>`<article class="card"><span class="tag">${esc(x.w)}</span><h3>${esc(x.t)}</h3>
   <p class="ar" lang="ar">${x.ar}</p><p class="lbl">Okunuşu</p><p class="ok">${esc(x.ok)}</p><p class="lbl">Anlamı</p><p class="meal">${esc(x.m)}</p></article>`).join('')+(filt==='sure'?'<p class="small muted">Mealler Diyanet Kur\'an Meali esas alınarak sadeleştirilmiştir. Kaynaklar Rehber sekmesinin sonundadır.</p>':'');
