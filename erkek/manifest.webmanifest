@@ -1,0 +1,2 @@
+{"name":"40 Gün Namaz Fidanım","short_name":"Namaz Fidanım","start_url":"./index.html","scope":"./","display":"standalone","background_color":"#f2f4ec","theme_color":"#e2eee5","lang":"tr",
+"icons":[{"src":"icon-192.png","sizes":"192x192","type":"image/png"},{"src":"icon-512.png","sizes":"512x512","type":"image/png"},{"src":"icon-maskable.png","sizes":"512x512","type":"image/png","purpose":"maskable"}]}
