@@ -478,7 +478,7 @@ function renderBugun(){
   <div class="${fut||d.ozel?'disabled-day':''}">
   ${VAKIT.map(v=>`<div class="card vakit"><div class="vhead"><h3>${v.ad}</h3><span class="small muted">${v.p.reduce((a,p)=>a+p[2],0)} rekat</span></div><div class="chips">
   ${v.p.map(p=>`<button type="button" class="chip ${p[0]==='f'?'farz':''}" data-k="${v.id}_${p[0]}" aria-pressed="${!!d[v.id+'_'+p[0]]}"><span class="dot"></span>${p[1]} <small>${p[2]}</small></button>`).join('')}
-  </div>${d[v.id+'_f']?`<button type="button" class="tlink" data-tesb>Tesbihat çek →</button>`:''}</div>`).join('')}</div>
+  </div>${d[v.id+'_f']?`<button type="button" class="tlink" data-tesb>Tesbih çek →</button>`:''}</div>`).join('')}</div>
   <div class="card ozel"><div><b>Özel gün</b><br><span class="small muted">Bu gün namaz kılınmaz. Seri bozulmaz, kamp bir gün uzar.</span></div>
   <button type="button" class="switch" id="oz" role="switch" aria-checked="${!!d.ozel}" aria-label="Özel gün" ${fut?'disabled':''}></button></div>
   <div class="card verse">“${esc(ay[0])}”<small>${esc(ay[1])} · anlamı</small></div>
@@ -504,7 +504,7 @@ function toggle(key){
   if(rk(view)===40&&before.r<40)msg=pick(MSG.full);
   else if(fc(view)===5&&before.f<5){const nd=camp().filter(x=>!x.oz&&fc(x.k)===5).length;msg=MILE[nd]||pick(MSG.day)}
   else msg=pick(part==='f'?MSG.f:part==='v'?MSG.v:MSG.s);
-  toast(nm(msg),st,idx,part==='f'||part==='v'?['Tesbihat çek',goTesb]:null);
+  toast(nm(msg),st,idx,part==='f'||part==='v'?['Tesbih çek',goTesb]:null);
 }
 function toggleOz(){
   if(view>today())return;
