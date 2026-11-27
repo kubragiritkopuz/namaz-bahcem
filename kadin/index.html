@@ -33,7 +33,7 @@ LAYOUT: one calm mobile column, bottom tab bar, cards per prayer time
 *{box-sizing:border-box;min-width:0}
 html{scroll-padding-top:80px;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Nunito,system-ui,sans-serif;overflow-x:clip;padding-bottom:calc(32px + env(safe-area-inset-bottom))}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.55;z-index:-1;
+body::before{content:"";position:fixed;top:0;right:0;bottom:0;left:0;inset:0;pointer-events:none;opacity:.55;z-index:-1;
 background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cg fill='%23e9a9b8' opacity='.5'%3E%3Ccircle cx='20' cy='24' r='3'/%3E%3Ccircle cx='26' cy='24' r='3'/%3E%3Ccircle cx='23' cy='19' r='3'/%3E%3Ccircle cx='23' cy='29' r='3'/%3E%3C/g%3E%3Ccircle cx='23' cy='24' r='1.6' fill='%23e5b45a'/%3E%3Cg fill='%23a9c3a3' opacity='.55'%3E%3Cellipse cx='100' cy='92' rx='5' ry='2.4' transform='rotate(-30 100 92)'/%3E%3Cellipse cx='110' cy='88' rx='5' ry='2.4' transform='rotate(30 110 88)'/%3E%3C/g%3E%3Cg fill='%23f3c7d0' opacity='.6'%3E%3Ccircle cx='80' cy='30' r='2'/%3E%3Ccircle cx='84' cy='30' r='2'/%3E%3Ccircle cx='82' cy='27' r='2'/%3E%3Ccircle cx='82' cy='33' r='2'/%3E%3C/g%3E%3C/svg%3E")}
 main{max-width:640px;margin:0 auto;padding:0 16px}
 h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;line-height:1.08;margin:0;text-wrap:balance;color:var(--ink)}
@@ -91,7 +91,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0}
 .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--rose2),var(--rose));border-radius:999px}
 .brow{display:flex;justify-content:space-between;font-weight:700;font-size:15px}
 /* dua */
-.seg{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;position:sticky;top:66px;background:var(--bg);padding:10px 0;z-index:2}
+.seg{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;position:-webkit-sticky;position:sticky;top:66px;background:var(--bg);padding:10px 0;z-index:2}
 .seg button{min-height:44px;padding:0 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-weight:700;cursor:pointer}
 .seg #az,.seg #aZ{width:44px;padding:0;margin-left:auto}.seg #aZ{margin-left:0}
 .seg button[aria-pressed=true]{background:var(--rose);color:#fff;border-color:var(--rose)}
@@ -112,13 +112,13 @@ details{border-top:1px solid var(--line);padding:10px 0}details summary{cursor:p
 a{color:var(--rose)}
 .src li{margin-bottom:10px}
 /* nav */
-.nav{position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;padding:6px 6px;z-index:10;box-shadow:0 2px 10px rgba(184,80,107,.08)}
+.nav{position:-webkit-sticky;position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;padding:6px 6px;z-index:10;box-shadow:0 2px 10px rgba(184,80,107,.08)}
 .nav-in{max-width:640px;margin:0 auto;display:contents}
 .nav a{cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;font-weight:700;color:var(--soft);text-decoration:none;min-height:52px;justify-content:center;border-radius:14px}
 .nav a svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .nav a.on{color:var(--rose);background:var(--blush)}
 /* toast & modal */
-#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translate(-50%,20px);width:min(92vw,520px);background:var(--card);border:1.5px solid var(--rose2);border-radius:20px;padding:14px 16px;box-shadow:0 10px 30px rgba(120,40,60,.25);opacity:0;pointer-events:none;transition:.3s;z-index:20;display:flex;gap:12px;align-items:center}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translate(-50%,20px);width:92vw;max-width:520px;background:var(--card);border:1.5px solid var(--rose2);border-radius:20px;padding:14px 16px;box-shadow:0 10px 30px rgba(120,40,60,.25);opacity:0;pointer-events:none;transition:.3s;z-index:20;display:flex;gap:12px;align-items:center}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 #toast svg{width:44px;height:50px;flex:none}
 #toast p{margin:0;font-weight:700}
@@ -126,11 +126,19 @@ a{color:var(--rose)}
 .tbody{display:grid;gap:8px;justify-items:start}
 .tact{min-height:40px;padding:0 16px;border-radius:999px;border:0;background:var(--rose);color:#fff;font-weight:800;cursor:pointer}
 .tlink{display:inline-flex;align-items:center;gap:6px;margin-top:10px;min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--sage);background:var(--leaf);color:var(--sage);font-weight:800;cursor:pointer}
-.modal{position:fixed;inset:0;background:rgba(40,20,25,.45);display:none;place-items:center;z-index:30;padding:20px}
+.modal{position:fixed;top:0;right:0;bottom:0;left:0;inset:0;background:rgba(40,20,25,.45);display:none;place-items:center;z-index:30;padding:20px}
 .modal.on{display:grid}.modal .card{max-width:420px;width:100%}
 .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
 .pop{animation:pop .6s ease}
 @keyframes pop{0%{transform:scale(.85)}60%{transform:scale(1.08)}100%{transform:scale(1)}}
+/* eski iPhone (iOS 12-14) için yedekler */
+@supports not (aspect-ratio:1){
+ .slot{height:0;padding-top:120%}.slot svg{position:absolute;top:0;left:0;width:100%;height:100%}
+ .zbtn{width:220px;height:220px}
+}
+@supports not (gap:1px){}
+.chips>*{margin:0 8px 8px 0}.chips{margin-bottom:-8px}
+@supports (gap:1px) and (aspect-ratio:1){.chips>*{margin:0}.chips{margin-bottom:0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .zk{display:grid;justify-items:center;gap:10px;text-align:center}
 .zbtn{width:min(70vw,240px);aspect-ratio:1;border-radius:50%;border:0;cursor:pointer;background:radial-gradient(circle at 35% 30%,#f6c9d3,var(--rose) 70%);color:#fff;box-shadow:0 10px 30px rgba(184,80,107,.35),inset 0 -6px 14px rgba(0,0,0,.12);display:grid;place-items:center;align-content:center;gap:2px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
@@ -148,6 +156,9 @@ a{color:var(--rose)}
 <script data-goatcounter="https://namazbahcem.goatcounter.com/count" data-goatcounter-settings='{"no_onload":true}' async src="https://gc.zgo.at/count.js" id="gcjs"></script>
 </head>
 <body>
+<script>
+window.addEventListener('load',function(){setTimeout(function(){if(!window.__appOk){var m=document.getElementById('jsErr');if(m)m.style.display='block'}},300)});
+</script>
 <nav class="nav" aria-label="Menü">
   <a href="#bugun" data-v="bugun"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>Bugün</a>
   <a href="#bahce" data-v="bahce"><svg viewBox="0 0 24 24"><path d="M12 21v-8"/><path d="M12 13c-3 0-5-2-5-5 3 0 5 2 5 5zM12 13c3 0 5-2 5-5-3 0-5 2-5 5z"/><path d="M4 21h16"/></svg>Bahçem</a>
@@ -155,6 +166,7 @@ a{color:var(--rose)}
   <a href="#dualar" data-v="dualar"><svg viewBox="0 0 24 24"><path d="M8 21c-2-3-3-6-1-10l3-6 2 1-1 5"/><path d="M16 21c2-3 3-6 1-10l-3-6-2 1 1 5"/></svg>Dualar</a>
 </nav>
 <main>
+<p id="jsErr" style="display:none;margin:18px 0;padding:14px 16px;border-radius:16px;background:#fff3cd;color:#5c4400;font-size:15px">Uygulama bu telefonda tam yüklenemedi. Sayfayı yenilemeyi dene. Düzelmezse telefonunun iOS sürümünü <b>Ayarlar → Genel → Yazılım Güncelleme</b> bölümünden güncellemek yardımcı olabilir.</p>
 
 <!-- BUGÜN -->
 <section class="view" id="v-bugun" aria-label="Bugün"></section>
@@ -405,7 +417,7 @@ const K='namazBahcem40_v1';let canStore=true,S=null;
 try{const r=localStorage.getItem(K);S=r?JSON.parse(r):null}catch(e){canStore=false}
 function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){canStore=false;document.getElementById('warn').style.display='block'}}
 if(!canStore)document.getElementById('warn').style.display='block';
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pad=n=>String(n).padStart(2,'0');
 const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
 const parse=s=>{const[a,b,c]=s.split('-').map(Number);return new Date(a,b-1,c)};
@@ -434,7 +446,7 @@ function flower(st,i,big){
   if(st===1)return `<svg viewBox="0 0 100 120" aria-hidden="true">${soil}<path d="M50 112 V92" stroke="#6f9a68" stroke-width="3" stroke-linecap="round"/><path d="M50 96 C42 94 38 88 38 82 C46 84 50 90 50 96Z" fill="#8fb886"/><path d="M50 94 C58 92 62 86 62 80 C54 82 50 88 50 94Z" fill="#7aa771"/></svg>`;
   if(st===2)head=`<path d="M50 62 C40 56 40 40 50 30 C60 40 60 56 50 62Z" fill="${p}"/><path d="M50 62 C45 56 45 44 50 36 C55 44 55 56 50 62Z" fill="${q}" opacity=".6"/>`;
   if(st>=3){const n=st===4?8:6,r=st===4?17:15;
-    head=`<g transform="translate(50 46)">${Array.from({length:n},(_,j)=>`<ellipse rx="${st===4?10:9}" ry="${r}" cy="-${r-2}" fill="${j%2?q:p}" opacity="${j%2?.85:1}" transform="rotate(${j*360/n})"/>`).join('')}<circle r="${st===4?9:7}" fill="#e5b45a"/><circle r="3" cx="-2" cy="-2" fill="#f7dc9a"/></g>`;
+    head=`<g transform="translate(50 46)">${Array.from({length:n},(_,j)=>`<ellipse rx="${st===4?10:9}" ry="${r}" cy="-${r-2}" fill="${j%2?q:p}" opacity="${j%2?0.85:1}" transform="rotate(${j*360/n})"/>`).join('')}<circle r="${st===4?9:7}" fill="#e5b45a"/><circle r="3" cx="-2" cy="-2" fill="#f7dc9a"/></g>`;
     if(st===4)head+=`<g fill="#e5b45a"><circle cx="18" cy="22" r="2.4"/><circle cx="84" cy="30" r="2"/><circle cx="80" cy="12" r="1.6"/><circle cx="14" cy="44" r="1.6"/></g>`;}
   return `<svg viewBox="0 0 100 120" aria-hidden="true">${soil}${stem}${leaves}${head}</svg>`;
 }
@@ -628,6 +640,7 @@ function go(h){try{history.replaceState(null,'','#'+h)}catch(e){}route(h)}
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const h=a.getAttribute('href').slice(1);if(!h)return;e.preventDefault();go(h)});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&(location.hash===''||location.hash==='#bugun')){view=today();renderBugun()}});
 route();
+window.__appOk=1;
 if('serviceWorker' in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(()=>{})}
 }
 </script>
