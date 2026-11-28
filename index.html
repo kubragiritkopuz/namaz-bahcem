@@ -3,95 +3,56 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Namaz Takibi">
-<meta name="theme-color" content="#f6f1e9">
+<meta name="robots" content="noindex">
 <meta name="color-scheme" content="light only">
-<title>40 Gün Namaz Takibi</title>
-<meta name="description" content="40 günlük namaz takip kampı: kadınlar için Namaz Bahçem, erkekler için Namaz Fidanım.">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" href="favicon.png">
-<script>
-/* Seçim hatırlanıyorsa karşılama ekranını hiç göstermeden yönlendir */
-(function(){
-  var h=location.hash;
-  if(h==='#sec')return;
-  var s=null;
-  try{
-    s=localStorage.getItem('namazSecim');
-    if(!s&&localStorage.getItem('namazBahcem40_v1'))s='kadin';
-    if(!s&&localStorage.getItem('namazFidanim40_v1'))s='erkek';
-  }catch(e){}
-  if(s==='kadin'||s==='erkek'){
-    document.documentElement.style.visibility='hidden';
-    location.replace(s+'/index.html'+(h||''));
-  }
-})();
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<script data-goatcounter="https://namazbahcem.goatcounter.com/count" data-goatcounter-settings='{"no_onload":true}' async src="https://gc.zgo.at/count.js" id="gcjs"></script>
+<title>Namaz Bahçesi yeni adresinde</title>
+<link rel="canonical" href="https://namazbahcesi.com/">
 <style>
-/*
-VOICE: calm, welcoming doorway
-IDEA: a garden gate with two paths - a flower bed and a young grove
-PICTURE: two large cards, each with its own illustration
-COLOUR and TYPE: warm cream; blush+rose for Bahçem, sage+forest for Fidanım; Cormorant titles, Nunito body
-LAYOUT: one column on phones, two columns on wide screens
-*/
-:root{color-scheme:light only;--bg:#f6f1e9;--ink:#2e2a26;--soft:#6c645c;--line:#e6dccd}
-*{box-sizing:border-box;min-width:0}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Nunito,system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:clamp(24px,6vw,56px) 18px calc(28px + env(safe-area-inset-bottom))}
-h1{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(34px,9vw,48px);line-height:1.05;margin:0 0 6px;text-align:center;text-wrap:balance}
-.lead{color:var(--soft);text-align:center;margin:0 0 22px;max-width:30em}
-.cards{display:grid;gap:16px;width:100%;max-width:760px}
-@media(min-width:640px){.cards{grid-template-columns:1fr 1fr}}
-.c{display:grid;grid-template-columns:110px minmax(0,1fr);align-items:center;gap:12px;text-decoration:none;color:inherit;border-radius:26px;padding:18px;border:1.5px solid transparent;box-shadow:0 8px 24px rgba(60,40,20,.08);transition:transform .15s}
-.c:active{transform:scale(.98)}
-.c:focus-visible{outline:3px solid #e5b45a;outline-offset:3px}
-.c svg{width:110px;height:132px}
-.k{background:linear-gradient(160deg,#f7dde1,#fffaf9);border-color:#efd3d8}
-.e{background:linear-gradient(160deg,#e2eee5,#fdfdf8);border-color:#d8e4da}
-.c small{display:block;font-weight:800;font-size:14px;letter-spacing:.02em}
-.k small{color:#b8506b}.e small{color:#2f6b4f}
-.c h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:30px;line-height:1.05;margin:2px 0 6px}
-.c p{margin:0;color:var(--soft);font-size:15px}
-.go{display:inline-flex;align-items:center;min-height:42px;margin-top:10px;padding:0 16px;border-radius:999px;color:#fff;font-weight:800;font-size:15px}
-.k .go{background:#b8506b}.e .go{background:#2f6b4f}
-.note{color:var(--soft);font-size:14px;text-align:center;margin-top:22px;max-width:32em}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:#f6f1e9;color:#2e2a26;font:17px/1.5 system-ui,-apple-system,sans-serif;text-align:center;padding:24px}
+h1{font:700 30px/1.15 Georgia,serif;margin:0}
+a.b{display:inline-block;margin-top:8px;padding:12px 22px;border-radius:999px;background:#b8506b;color:#fff;font-weight:700;text-decoration:none}
+small{color:#6c645c}
 </style>
 </head>
 <body>
-<h1>40 Gün Namaz Takibi</h1>
-<p class="lead">Beş vaktini işaretle, her gün biraz daha büyüdüğünü gör. Başlamak için kendine uygun olanı seç.</p>
-
-<div class="cards">
-  <a class="c k" href="kadin/index.html" data-v="kadin">
-    <svg viewBox="0 0 100 120" aria-hidden="true"><ellipse cx="50" cy="114" rx="22" ry="5" fill="#c9a48a" opacity=".55"/><path d="M50 112 C50 90 48 78 50 60" stroke="#6f9a68" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M50 92 C38 88 32 80 30 72 C42 74 48 82 50 92Z" fill="#8fb886"/><path d="M50 84 C62 80 68 72 70 64 C58 66 52 74 50 84Z" fill="#7aa771"/><g transform="translate(50 46)"><g fill="#e98fa6"><ellipse rx="10" ry="17" cy="-15"/><ellipse rx="10" ry="17" cy="-15" transform="rotate(90)"/><ellipse rx="10" ry="17" cy="-15" transform="rotate(180)"/><ellipse rx="10" ry="17" cy="-15" transform="rotate(270)"/></g><g fill="#c25a73" opacity=".85"><ellipse rx="10" ry="17" cy="-15" transform="rotate(45)"/><ellipse rx="10" ry="17" cy="-15" transform="rotate(135)"/><ellipse rx="10" ry="17" cy="-15" transform="rotate(225)"/><ellipse rx="10" ry="17" cy="-15" transform="rotate(315)"/></g><circle r="9" fill="#e5b45a"/></g></svg>
-    <div><small>Kadınlar için</small><h2>Namaz Bahçem</h2><p>Her kıldığın gün bahçende bir çiçek açar. Özel gün seçeneğiyle.</p><span class="go">Bahçeme git →</span></div>
-  </a>
-  <a class="c e" href="erkek/index.html" data-v="erkek">
-    <svg viewBox="0 0 100 120" aria-hidden="true"><ellipse cx="50" cy="114" rx="24" ry="5" fill="#b89a74" opacity=".55"/><path d="M45 112 C47 96 47 82 48 66 L52 66 C53 82 53 96 55 112Z" fill="#8a6a3d"/><path d="M50 84 L38 72M50 78 L63 68" stroke="#8a6a3d" stroke-width="3" stroke-linecap="round"/><circle cx="50" cy="42" r="26" fill="#3f7d57"/><circle cx="31" cy="54" r="17" fill="#5f9e74"/><circle cx="69" cy="54" r="17" fill="#5f9e74"/><circle cx="50" cy="30" r="17" fill="#5f9e74"/><g fill="#e5b45a"><circle cx="38" cy="44" r="3.4"/><circle cx="60" cy="36" r="3.4"/><circle cx="66" cy="56" r="3.2"/><circle cx="46" cy="58" r="3"/></g></svg>
-    <div><small>Erkekler için</small><h2>Namaz Fidanım</h2><p>Her kıldığın gün fidanlığında bir ağaç yükselir. Cuma namazı takibiyle.</p><span class="go">Fidanlığıma git →</span></div>
-  </a>
-</div>
-
-<p class="note">Seçimin bu telefonda hatırlanır; bir dahaki açışında doğrudan kendi uygulamana gidersin. İşaretlemelerin yalnızca senin telefonunda saklanır.</p>
-
+<h1>Namaz Bahçesi taşındı</h1>
+<p>Yeni adresimiz: <b>namazbahcesi.com</b><br>İşaretlemelerin de seninle geliyor, birkaç saniye içinde yönlendiriliyorsun…</p>
+<a class="b" id="go" href="https://namazbahcesi.com/">Yeni adrese git</a>
+<small>Bir dahaki sefere doğrudan namazbahcesi.com adresini açabilirsin.</small>
 <script>
 (function(){
-  document.querySelectorAll('.c').forEach(a=>a.addEventListener('click',()=>{
-    const v=a.dataset.v;
-    try{localStorage.setItem('namazSecim',v)}catch(e){}
-    try{window.goatcounter&&window.goatcounter.count&&window.goatcounter.count({path:'secim-'+v,title:'Seçim: '+(v==='kadin'?'Kadın':'Erkek'),event:true})}catch(e){}
-  }));
-  const s=document.getElementById('gcjs');
-  if(s)s.addEventListener('load',()=>{try{window.goatcounter.count({path:'/',title:'Karşılama (seçim) ekranı'})}catch(e){}});
-  if('serviceWorker' in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+  var NEW='https://namazbahcesi.com/';
+  var PAGE='root';
+  function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function obj(k){try{return JSON.parse(get(k)||'null')}catch(e){return null}}
+  var h=location.hash||'';
+  if(!/^#[a-z0-9\-]*$/.test(h))h='';
+  var s=get('namazSecim');
+  var b=obj('namazBahcem40_v1'),f=obj('namazFidanim40_v1');
+  if(!s&&b)s='kadin';if(!s&&f)s='erkek';
+  var to;
+  if(PAGE==='kadin'||PAGE==='erkek'){to=PAGE+'/index.html'+(h==='#sec'?'':h)}
+  else if(h==='#sec'||!s){to='index.html'+(h==='#sec'?'#sec':'')}
+  else{to=s+'/index.html'+h}
+  var url=NEW+'index.html';
+  if(b||f||s){
+    var p={to:to,s:s,b:b,f:f};
+    try{url=NEW+'tasi.html#'+encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(p)))))}catch(e){url=NEW+to}
+  }else{url=NEW+to}
+  document.getElementById('go').href=url;
+  var done=false;
+  function go(){if(done)return;done=true;location.replace(url)}
+  try{
+    var jobs=[];
+    if(navigator.serviceWorker&&navigator.serviceWorker.getRegistrations){
+      jobs.push(navigator.serviceWorker.getRegistrations().then(function(rs){return Promise.all(rs.map(function(r){return r.unregister()}))}));
+    }
+    if(window.caches&&caches.keys){
+      jobs.push(caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}));
+    }
+    Promise.all(jobs).then(go,go);
+  }catch(e){}
+  setTimeout(go,900);
 })();
 </script>
 </body>
